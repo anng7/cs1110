@@ -1,0 +1,18 @@
+Stenography:
+
+Thoughts
+
+Detection: Marker should be short--Since I'm planning on encoding the length of
+the message immediately after the marker, the odds of mistakenly recognizing a
+nonexistent message are fairly low. Moreover, the user will be able to quickly
+detect if their isn't a genuine message in the image-- the output will likely be
+a string of random characters.
+^ Calculate odds of false detection
+
+Length: The length of the message should be embedded in the front of the message.
+In the event of false detection, the program should also check to make sure the
+length of the message does not exceed the number of available pixels.
+
+Color values exceeding 255: Implement a simple conditional that subtracts from
+a color component if it exceeds 255 after the message has been embedded.
+

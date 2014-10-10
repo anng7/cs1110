@@ -1,0 +1,56 @@
+#:kivy 1.4
+# Layout Specification for Popup Dialogs
+
+<ErrorMessage>:
+    orientation: 'vertical'
+    button: okay
+    size: (14*len(root.label),50)
+    color: (1,1,0,1)
+    
+    Label:
+        text: root.label
+        color: (1,1,1,1)
+        font_size: 14
+        bold: True
+        valign: 'middle'
+        size_hint: (1,0.9)
+    
+    # Confirmation Button
+    Button:
+        id: okay
+        text: "Okay"
+        bold: True
+        size_hint: (1,0.1)
+        on_press: root.popup.dismiss()
+
+<ImageChooser>:
+    orientation: 'vertical'
+    chooser: files
+    open_button: open
+    cancel_button: cancel
+    
+    FileChooserIconView:
+        id: files
+        path: '.'
+        filters: ['*.png','*.jpg','*.gif']
+        size_hint: (1,0.9)
+        on_submit: root.popup.do_select(self.selection)
+
+    # Selection Options
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1,0.1)
+
+        Button:
+            id: cancel
+            text: "Cancel"
+            bold: True
+            size_hint: (0.5,1)
+            on_press: root.popup.dismiss()
+        
+        Button:
+            id: open
+            text: "Open"
+            bold: True
+            size_hint: (0.5,1)
+            on_press: root.popup.do_select(root.chooser.selection)

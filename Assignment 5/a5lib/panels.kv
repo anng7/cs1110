@@ -1,0 +1,527 @@
+#:kivy 1.4
+# Custom panels for defining transforms
+
+# Color compatible checkbox
+<CCheckBox>:
+    canvas:
+        Clear:
+        Color:
+            rgba: 0, 0, 0, 1
+        Rectangle:
+            source: 'atlas://data/images/defaulttheme/checkbox%s_%s' % (('_radio' if self.group else ''), ('on' if self.active else 'off'))
+            size: 32, 32
+            pos: int(self.center_x - 16), int(self.center_y - 16)
+
+
+<IdentityPanel>:
+    orientation: 'vertical'
+    size: (340,210)
+
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.2)
+    
+    Label:
+        size_hint: (1,0.4)
+        text: 'Nothing to Define'
+        font_size: 18
+        bold: True
+        color: (0,0,0,1)
+
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.4)
+
+
+<TranslatePanel>:
+    dx: dx_id
+    dy: dy_id
+    orientation: 'vertical'
+    size: (300,210)
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+    
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        Widget:
+            size_hint: (None,1)
+            size: (50,40)
+
+        Label:
+            size_hint: (None,1)
+            size: (50,40)
+            text: 'dx'
+            halign: 'left'
+            bold: True
+            font_size: 12
+            color: (0,0,0,1)
+        
+        TextInput:
+            id: dx_id
+            size_hint: (None,1)
+            size: (80,40)
+            multiline: False
+            font_size: 12
+            padding_y: 9
+            padding_x: 8
+            text: '0.0'
+            on_text_validate: root.update()
+
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        Widget:
+            size_hint: (None,1)
+            size: (50,40)
+        
+        Label:
+            size_hint: (None,1)
+            size: (50,40)
+            text: 'dy'
+            bold: True
+            halign: 'center'
+            font_size: 12
+            color: (0,0,0,1)
+        
+        TextInput:
+            id: dy_id
+            size_hint: (None,1)
+            size: (80,40)
+            multiline: False
+            font_size: 12
+            padding_y: 9
+            padding_x: 8
+            text: '0.0'
+            on_text_validate: root.update()
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.4)
+
+
+<ScalePanel>:
+    sx: sx_id
+    sy: sy_id
+    orientation: 'vertical'
+    size: (300,210)
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+    
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        Widget:
+            size_hint: (None,1)
+            size: (45,40)
+
+        Label:
+            size_hint: (None,1)
+            size: (90,40)
+            text: 'x-scale'
+            halign: 'left'
+            bold: True
+            font_size: 12
+            color: (0,0,0,1)
+        
+        TextInput:
+            id: sx_id
+            size_hint: (None,1)
+            size: (80,40)
+            multiline: False
+            font_size: 12
+            padding_y: 9
+            padding_x: 8
+            text: '1.0'
+            on_text_validate: root.update()
+
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        Widget:
+            size_hint: (None,1)
+            size: (45,40)
+        
+        Label:
+            size_hint: (None,1)
+            size: (90,40)
+            text: 'y-scale'
+            bold: True
+            halign: 'center'
+            font_size: 12
+            color: (0,0,0,1)
+        
+        TextInput:
+            id: sy_id
+            size_hint: (None,1)
+            size: (80,40)
+            multiline: False
+            font_size: 12
+            padding_y: 9
+            padding_x: 8
+            text: '1.0'
+            on_text_validate: root.update()
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.4)
+
+
+<RotatePanel>:
+    orientation: 'vertical'
+    size: (300,210)
+    angle: angle_id
+    degrees: degrees_id
+    radians: radians_id
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+    
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        Widget:
+            size_hint: (None,1)
+            size: (45,40)
+
+        Label:
+            size_hint: (None,1)
+            size: (75,40)
+            text: 'angle'
+            halign: 'left'
+            bold: True
+            font_size: 12
+            color: (0,0,0,1)
+        
+        TextInput:
+            id: angle_id
+            size_hint: (None,1)
+            size: (100,40)
+            multiline: False
+            font_size: 12
+            padding_y: 9
+            padding_x: 8
+            text: '0.0'
+            on_text_validate: root.update(False)
+
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        Widget:
+            size_hint: (None,1)
+            size: (60,40)
+
+        CCheckBox:
+            id: degrees_id
+            size_hint: (None,1)
+            group: str(root)
+            size: (20,20)
+            active: True
+            on_active: root.update(True)
+        
+        Label:
+            size_hint: (None,1)
+            size: (80,40)
+            text: 'degrees'
+            bold: True
+            halign: 'center'
+            font_size: 12
+            color: (0,0,0,1)
+
+        CCheckBox:
+            id: radians_id
+            size_hint: (None,1)
+            group: str(root)
+            size: (20,20)
+            active: False
+            on_active: root.update(True)
+
+        Label:
+            size_hint: (None,1)
+            size: (80,40)
+            text: 'radians'
+            bold: True
+            halign: 'center'
+            font_size: 12
+            color: (0,0,0,1)
+
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.4)
+
+
+<ShearPanel>:
+    x_axis: x_axis_id
+    y_axis: y_axis_id
+    amount: amount_id
+    orientation: 'vertical'
+    size: (300,210)
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+    
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        Widget:
+            size_hint: (None,1)
+            size: (60,40)
+
+        CCheckBox:
+            id: x_axis_id
+            size_hint: (None,1)
+            group: str(root)
+            size: (20,20)
+            active: True
+            on_active: root.update()
+        
+        Label:
+            size_hint: (None,1)
+            size: (80,40)
+            text: 'x-shear'
+            bold: True
+            halign: 'center'
+            font_size: 12
+            color: (0,0,0,1)
+
+        CCheckBox:
+            id: y_axis_id
+            size_hint: (None,1)
+            group: str(root)
+            size: (20,20)
+            active: False
+            on_active: root.update()
+
+        Label:
+            size_hint: (None,1)
+            size: (80,40)
+            text: 'y-shear'
+            bold: True
+            halign: 'center'
+            font_size: 12
+            color: (0,0,0,1)
+         
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+        
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        Widget:
+            size_hint: (None,1)
+            size: (55,40)
+
+        Label:
+            size_hint: (None,1)
+            size: (75,40)
+            text: 'amount'
+            halign: 'left'
+            bold: True
+            font_size: 12
+            color: (0,0,0,1)
+        
+        TextInput:
+            id: amount_id
+            size_hint: (None,1)
+            size: (80,40)
+            multiline: False
+            font_size: 12
+            padding_y: 9
+            padding_x: 8
+            text: '0.0'
+            on_text_validate: root.update()
+
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.4)
+
+
+<ReflectPanel>:
+    x_axis: x_axis_id
+    y_axis: y_axis_id
+    orientation: 'vertical'
+    size: (300,210)
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+    
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        # HORIZONAL SPACER
+        Widget:
+            size_hint: (None,1)
+            size: (50,40)
+        
+        Label:
+            size_hint: (None,1)
+            size: (60,40)
+            text: 'x-axis'
+            halign: 'left'
+            bold: True
+            font_size: 12
+            color: (0,0,0,1)
+        
+        CCheckBox:
+            id: x_axis_id
+            size_hint: (None,1)
+            size: (20,20)
+            active: False
+            on_active: root.update()
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.1)
+    
+    BoxLayout:
+        size_hint: (1,0.2)
+        orientation: 'horizontal'
+        
+        # HORIZONAL SPACER
+        Widget:
+            size_hint: (None,1)
+            size: (50,40)
+        
+        Label:
+            size_hint: (None,1)
+            size: (60,40)
+            text: 'y-axis'
+            halign: 'left'
+            bold: True
+            font_size: 12
+            color: (0,0,0,1)
+        
+        CCheckBox:
+            id: y_axis_id
+            size_hint: (None,1)
+            size: (20,20)
+            active: False
+            on_active: root.update()
+    
+    # VERTICAL SPACER
+    Widget:
+        size_hint: (1,0.4)
+
+
+# Does not work in latest Kivy update
+#<TransformBubble>:
+#    size_hint: (0.5, None)
+#    size: (0,200)
+#    pos_hint: {'right':1,'top':1}
+#    arrow_pos: 'left_top'
+#    orientation: 'vertical'
+#    rows: 6
+#    BubbleButton:
+#        text: 'Identity'
+#        on_press: root.select_option('Identity')
+#    BubbleButton:
+#        text: 'Translate'
+#        on_press: root.select_option('Translate')
+#    BubbleButton:
+#        text: 'Scale'
+#        on_press: root.select_option('Scale')
+#    BubbleButton:
+#        text: 'Rotate'
+#        on_press: root.select_option('Rotate')
+#    BubbleButton:
+#        text: 'Shear'
+#        on_press: root.select_option('Shear')
+#    BubbleButton:
+#        text: 'Reflect'
+#        on_press: root.select_option('Reflect')
+
+
+# Primary panel for defining transforms
+<TransformPanel>:
+    size: (340,300)
+    size_hint: (None,None)
+    content: content_id
+    choice: choice_id
+    bbzone: bubble_id
+
+    canvas:
+        Color:
+            rgb: (0.8,0.8,0.8)
+        Rectangle:
+            size: (self.size[0]-1,self.size[1]-2)
+            pos: (self.pos[0]+1,self.pos[1]+1)
+
+    # Go bottom up to allow bubble to work correctly
+    FloatLayout:
+        id: content_id
+        size_hint: (1, 0.7)
+        pos_hint: {'x':0, 'y':0}
+        
+        IdentityPanel:
+            pos_hint: {'x':0, 'top':1}
+            size_hint: (None,None)
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, 0.15)
+        pos_hint: {'x':0, 'top':0.85}
+
+        Label:
+            size_hint: (None,None)
+            size: (125,30)
+            color: (0,0,0,1)
+            bold: True
+            font_size: 14
+            text: 'Parameters: '
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, 0.15)
+        pos_hint: {'x':0, 'top':1}
+
+        Label:
+            size_hint: (None,None)
+            size: (120,30)
+            color: (0,0,0,1)
+            bold: True
+            font_size: 14
+            text: 'Transform: '
+
+        FloatLayout:
+            id: bubble_id
+            size_hint: (None,None)
+            size: (200,30)
+            
+            ToggleButton:
+                id: choice_id
+                state: 'normal'
+                size_hint: (0.5, None)
+                size: (100,30)
+                pos_hint: {'x':0,'top':1}
+                text: 'Identity'
+                bold: True
+                on_press: root.show_bubble()

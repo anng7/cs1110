@@ -1,0 +1,13 @@
+Stenography Problems
+
+Detection:
+
+I've decided to use a marker that ranges between 5 to 11 pixels (the length of the message is embedded within the marker, giving it a variable length). This length seemed small enough that the user would still have plenty of space to write messages, even in small images, while offering a low chance of false detection-- something on the order 1*10^-17 for the shortest possible tag, assuming that the odds of a specific character appearing in an image is 10^-3 (that's not quite the case because the range of values for colors is [0, 255], but it's close). Its even less likely that a random image would successfully conform to a longer tag. 
+
+Length: I incorporated the length into the label, which decreased the likelihood of the program incorrectly finding a message. Additionally, it allowed me to use chr() on the body of the message without worrying about python crashing-- had I encoded an end-indicator in my code, I couldn't use text to indicate the end of the message on the off-chance that the user's message included that piece of text. I would need to assign the end pixel a value greater than 256 and then check repeatedly that the encoded value of the pixel to be converted into text didn't exceed 256. If I didn't python might crash. By avoiding this repeated checking, imager should be able to decode messages faster.
+
+Side note: In the event of false detection, the program also checks to make sure the
+length of the message does not exceed the number of available pixels.
+
+The exact tag format I used was 'MSG_###:', where the #'s represent the length of the hidden text. The length of a number isn't necessarily stored as three digit number; the length can vary from 1 to 6 digits, and consequently affords the user the most space possible for writing messages. I realize that not consistently using a 6 digit length may increase the odd's of the reveal incorrectly detecting a non-existent message, but if the odds of false detection really were 10^-17, this seems like a permissible risk.
+
